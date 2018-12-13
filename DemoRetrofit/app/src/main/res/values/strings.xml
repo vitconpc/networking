@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoRetrofit</string>
+    <string name="getdata">Get data</string>
+    <string name="error_get_data">Vui lòng kiểm tra lại</string>
+</resources>

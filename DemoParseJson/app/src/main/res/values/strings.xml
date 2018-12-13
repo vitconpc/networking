@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DemoParseJson</string>
+    <string name="getdata">GetData</string>
+</resources>
