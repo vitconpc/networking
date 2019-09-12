@@ -1,5 +1,8 @@
 package vn.com.example.demoretrofit.retrofit;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -11,14 +14,17 @@ public class RetrofitClient {
     public static Retrofit getClient(String baseURL){
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder()
-                    .readTimeout(8, TimeUnit.SECONDS)
-                    .connectTimeout(8, TimeUnit.SECONDS)
+                    .readTimeout(8000, TimeUnit.MILLISECONDS)  //thời gian đọc là 8s
+                    .connectTimeout(8000, TimeUnit.MILLISECONDS) //thời gian kết nối tới server là 8s
+                    .writeTimeout(8,TimeUnit.SECONDS)  //thời gian viết trên server là 8s
+                    .retryOnConnectionFailure(true)  //kết nối lại khi server lỗi
                     .build();
 
+            Gson gson = new GsonBuilder().setLenient().create(); //giúp cho convert sang gson tốt hơn
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseURL)
                     .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
         return retrofit;
