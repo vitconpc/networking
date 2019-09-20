@@ -7,6 +7,8 @@ import vn.com.example.demoretrofit.model.data.Data;
 public interface MainContact {
     interface Presenter{
         void getData();
+
+        void onDestroy();
     }
 
     interface View{

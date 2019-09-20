@@ -67,4 +67,10 @@ public class MainActivity extends AppCompatActivity implements MainContact.View,
     public void getDataError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainPresenter.onDestroy();
+    }
 }
